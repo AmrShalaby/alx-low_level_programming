@@ -2,7 +2,7 @@
 /**
  * is lower - function to check if
  *          character is lowercase
- *
+ * description:
  * @c: checks input of fucnction
  *
  * Return: returns 1 if 'c' is lowercase
