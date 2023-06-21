@@ -1,15 +1,19 @@
-#include <unistd.h>
-#include "main.h"
-/**
- * _putchar - wirtes the character c to stdout
- * c: The character to print
- *
- * description 'c' c is a character
- *
- * Return: on success 1.
- *         on error. -1 is returned. an error is set appropriately
- *
- */
+#iclude main.h
 
-int _putchar(char c)
-	return (write(1, &c, 1));
+/**
+ * main - Entry point
+ *
+ * Description: prints _putchar using putchar prototype
+ *
+ * Return: Always 0 (Success)
+ * */
+
+int main(void)
+	char str[] = "_putchar";
+	it ch;
+
+	for (ch = 0; ch < 8; ch++)
+		_putchar(str[ch]);
+	_putchar('\n');
+
+	return (0);
