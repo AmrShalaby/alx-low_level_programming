@@ -9,6 +9,7 @@
  * */
 
 int main(void)
+{
 	char str[] = "_putchar";
 	int ch;
 
@@ -17,3 +18,4 @@ int main(void)
 	_putchar('\n');
 
 	return (0);
+}
