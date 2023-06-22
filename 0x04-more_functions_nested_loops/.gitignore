@@ -3,8 +3,8 @@
 *layout
 *depend
 *.exe
-main.c
 
 /bin/
 /obj/
 /.vscode/
+/trashfiles/
