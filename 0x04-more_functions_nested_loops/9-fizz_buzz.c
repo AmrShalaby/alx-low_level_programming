@@ -14,7 +14,7 @@
  * Return: 1..100 
  */
 
-int main(void)
+int main()
 {
 int i, modulo_three, modulo_five;
 for (i = 1; i <= 100 ; i++)
