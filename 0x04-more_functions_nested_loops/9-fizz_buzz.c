@@ -1,6 +1,7 @@
 #include "main.h"
+#include <stdio.h>
 /**
- * main - prints the numbers from 1 to 100,
+ * FizzBuzz - prints the numbers from 1 to 100,
  * followed by a new line.
  * description
  * But for multiples of three print Fizz instead of the number
@@ -8,11 +9,12 @@
  * For numbers which are multiples of both three and five
  * print FizzBuzz
  *
- * no input
+ * void: no input
  * 
  * Return: 1..100 
  */
-int main()
+
+int main(void)
 {
 int i, modulo_three, modulo_five;
 for (i = 1; i <= 100 ; i++)
