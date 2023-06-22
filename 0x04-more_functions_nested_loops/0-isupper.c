@@ -7,14 +7,14 @@
 */
 int _isupper(int c)
 {
-if(c >= 'A' && c <= 'Z')
+if (c >= 'A' && c <= 'Z')
 {
-//printf("Number is lowercase");
+/*printf("Number is lowercase");*/
 return (1);
 }
 else
 {
-//printf("Number is uppercase");
+/*printf("Number is uppercase");*/
 return (0);
 }
 }
