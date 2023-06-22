@@ -1,0 +1,9 @@
+*.log
+*cbp
+*layout
+*depend
+*.exe
+
+/bin/
+/obj/
+/.vscode/
