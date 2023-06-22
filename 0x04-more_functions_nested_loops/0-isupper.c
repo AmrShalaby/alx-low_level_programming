@@ -9,12 +9,12 @@ int _isupper(char c)
 {
 if(c >= 'a' && c <= 'z')
 {
-printf("Number is lowercase");
+//printf("Number is lowercase");
 return (1);
 }
 else if(c >= 'A' && c <= 'Z')
 {
-printf("Number is uppercase");
+//printf("Number is uppercase");
 return (0);
 }
 }
