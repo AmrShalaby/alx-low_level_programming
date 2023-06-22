@@ -1,8 +1,8 @@
 #include "main.h"
 /**
- * print_line - print line
- *@n: is input how '_' do you need to print
- * Return: _ n numbers
+ * print_diagonal - print line diagonal
+ *@n: is input
+ * Return: 0
  */
 void print_diagonal(int n)
 {
