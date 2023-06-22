@@ -10,7 +10,7 @@
  * no input
  * Return: 1..100
  */
-void fizz_buzz(void)
+int main(void)
 {
 int i, modulo_three, modulo_five;
 for (i = 1; i <= 100 ; i++)
@@ -39,6 +39,6 @@ if (i == 100)
 {
 printf("\n");
 }
-
 }
+return (0);
 }
