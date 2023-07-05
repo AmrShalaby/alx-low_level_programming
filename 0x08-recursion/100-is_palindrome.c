@@ -5,14 +5,18 @@
  *
  * Return: 1 if the string is a palindrome, 0 otherwise
  */
-int is_palindrome(char *s) {
-    int i = 0, j = strlen(s)-1;
-
-    while (i < j) {
-        if (s[i++] != s[j--]) {
-            return 0;
-        }
+int is_palindrome_helper(char *s, int len, int i) {
+    if (i >= len / 2) {
+        return 1;
     }
-
-    return 1;
+    if (s[i] != s[len - i - 1]) {
+        return 0;
+    }
+    return is_palindrome_helper(s, len, i + 1);
 }
+
+int is_palindrome(char *s) {
+    int len = strlen(s);
+    return is_palindrome_helper(s, len, 0);
+}
+
