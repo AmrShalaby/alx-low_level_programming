@@ -1,6 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 #include <stdio.h>
+#include <string.h>
 
 int _putchar(char);
 void _puts_recursion(char *s);
@@ -12,4 +13,6 @@ int _sqrt_recursion(int n);
 int is_prime_number(int n);
 int sqrt_root(int n, int i);
 int is_prime(int n, int i);
+int is_palindrome(char *s);
+int wildcmp(char *s1, char *s2);
 #endif
