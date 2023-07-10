@@ -1,10 +1,13 @@
 #include "main.h"
+#include <stdlib.h>
+#include <stdio.h>
+
 /**
- * count_words - Counts the number of words in a string.
- * @str: The input string.
- *
- * Return: The number of words in the string.
- */
+* count_words - Counts the number of words in a string.
+* @str: The input string.
+*
+* Return: The number of words in the string.
+*/
 int count_words(char *str)
 {
 int i, count = 0;
@@ -33,15 +36,6 @@ if (str == NULL || *str == '\0')
 return (NULL);
 
 count = count_words(str);
-if (count == 0)
-{
-words = malloc(sizeof(char *));
-if (words == NULL || words == ' ')
-return (NULL);
-words[0] = NULL;
-return (words);
-}
-
 words = malloc(sizeof(char *) * (count + 1));
 if (words == NULL)
 return (NULL);
@@ -59,7 +53,7 @@ words[j] = malloc(sizeof(char) * (len + 1));
 if (words[j] == NULL)
 {
 for (k = 0; k < j; k++)
-free(words[k]);
+    free(words[k]);
 free(words);
 return (NULL);
 }
