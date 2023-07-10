@@ -29,7 +29,7 @@ char **strtow(char *str)
 char **words;
 int i, j, k, count, len;
 
-if (str == NULL || *str == '\0')
+if (str == NULL || *str == '\0' || *str == " ")
 return (NULL);
 
 count = count_words(str);
