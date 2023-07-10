@@ -1,11 +1,10 @@
 #include "main.h"
-
 /**
-* count_words - Counts the number of words in a string.
-* @str: The input string.
-*
-* Return: The number of words in the string.
-*/
+ * count_words - Counts the number of words in a string.
+ * @str: The input string.
+ *
+ * Return: The number of words in the string.
+ */
 int count_words(char *str)
 {
 int i, count = 0;
