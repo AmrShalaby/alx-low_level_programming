@@ -21,7 +21,7 @@ s2_len = strlen(s2);
 
 concat_str = malloc(sizeof(char) * (s1_len + s2_len + 1));
 if (concat_str == NULL)
-return NULL;
+return (NULL);
 
 for (i = 0; i < s1_len; i++)
 concat_str[i] = s1[i];
@@ -31,5 +31,5 @@ concat_str[i + j] = s2[j];
 
 concat_str[i + j] = '\0';
 
-return concat_str;
+return (concat_str);
 }
