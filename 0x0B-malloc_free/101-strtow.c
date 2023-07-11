@@ -10,19 +10,20 @@
  */
 char **strtow(char *str)
 {
-    if (str == NULL || strlen(str) == 0 || strcmp(str, " ") == 0)
-        return (NULL);
-
-    char *word = NULL;
+    char *word;
     int word_i = 0;
-    char **words = (char **) malloc((strlen(str) + 1) * sizeof(char *));
-    if (words == NULL)
-        return (NULL);
-
+    char **words;
     int words_i = 0;
-    int i;
+    int i, j;
 
-    for (i = 0; str[i] != '\0'; i++)
+    if (str == NULL || strlen(str) == 0)
+        return NULL;
+
+    words = (char **) malloc((strlen(str) + 1) * sizeof(char *));
+    if (words == NULL)
+        return NULL;
+
+    for (i = 0; str[i] != '\0'; )
     {
         if (isspace(str[i]))
         {
@@ -34,6 +35,7 @@ char **strtow(char *str)
                 word = NULL;
                 word_i = 0;
             }
+            i++;
         }
         else
         {
@@ -42,13 +44,13 @@ char **strtow(char *str)
                 word = (char *) malloc((count_chars(str + i) + 1) * sizeof(char));
                 if (word == NULL)
                 {
-                    for (int j = 0; j < words_i; j++)
+                    for (j = 0; j < words_i; j++)
                         free(words[j]);
                     free(words);
-                    return (NULL);
+                    return NULL;
                 }
             }
-            word[word_i++] = str[i];
+            word[word_i++] = str[i++];
         }
     }
 
@@ -62,7 +64,7 @@ char **strtow(char *str)
     }
 
     words[words_i] = NULL;
-    return (words);
+    return words;
 }
 
 /**
@@ -80,5 +82,5 @@ int count_chars(char *str)
         count++;
         str++;
     }
-    return (count);
+    return count;
 }
