@@ -1,6 +1,5 @@
 #include "main.h"
 #include <ctype.h>
-
 /**
  * strtow - Splits a string into words.
  *
@@ -11,58 +10,59 @@
  */
 char **strtow(char *str)
 {
-	if (str == NULL || strlen(str) == 0 || strcmp(str, " ") == 0)
-		return (NULL);
+    if (str == NULL || strlen(str) == 0 || strcmp(str, " ") == 0)
+        return (NULL);
 
-	char *word = NULL;
-	int word_i = 0;
-	char **words = malloc((strlen(str) + 1) * sizeof(char *));
-	if (words == NULL)
-		return (NULL);
+    char *word = NULL;
+    int word_i = 0;
+    char **words = (char **) malloc((strlen(str) + 1) * sizeof(char *));
+    if (words == NULL)
+        return (NULL);
 
-	int words_i = 0;
+    int words_i = 0;
+    int i;
 
-	for (int i = 0; str[i] != '\0'; i++)
-	{
-		if (isspace(str[i]))
-		{
-			if (word != NULL)
-			{
-				word[word_i] = '\0';
-				words[words_i++] = word;
+    for (i = 0; str[i] != '\0'; i++)
+    {
+        if (isspace(str[i]))
+        {
+            if (word != NULL)
+            {
+                word[word_i] = '\0';
+                words[words_i++] = word;
 
-				word = NULL;
-				word_i = 0;
-			}
-		}
-		else
-		{
-			if (word == NULL)
-			{
-				word = malloc((count_chars(str + i) + 1) * sizeof(char));
-				if (word == NULL)
-				{
-					for (int j = 0; j < words_i; j++)
-						free(words[j]);
-					free(words);
-					return (NULL);
-				}
-			}
-			word[word_i++] = str[i];
-		}
-	}
+                word = NULL;
+                word_i = 0;
+            }
+        }
+        else
+        {
+            if (word == NULL)
+            {
+                word = (char *) malloc((count_chars(str + i) + 1) * sizeof(char));
+                if (word == NULL)
+                {
+                    for (int j = 0; j < words_i; j++)
+                        free(words[j]);
+                    free(words);
+                    return (NULL);
+                }
+            }
+            word[word_i++] = str[i];
+        }
+    }
 
-	if (word != NULL)
-	{
-		word[word_i] = '\0';
-		words[words_i++] = word;
+    if (word != NULL)
+    {
+        word[word_i] = '\0';
+        words[words_i++] = word;
 
-		word = NULL;
-		word_i = 0;
-	}
+        word = NULL;
+        word_i = 0;
+    }
 
-	words[words_i] = NULL;
-	return (words);
+    words[words_i] = NULL;
+    return (words);
 }
 
 /**
@@ -74,11 +74,11 @@ char **strtow(char *str)
  */
 int count_chars(char *str)
 {
-	int count = 0;
-	while (*str != '\0' && !isspace(*str))
-	{
-		count++;
-		str++;
-	}
-	return (count);
+    int count = 0;
+    while (*str != '\0' && !isspace(*str))
+    {
+        count++;
+        str++;
+    }
+    return (count);
 }
