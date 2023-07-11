@@ -1,70 +1,84 @@
 #include "main.h"
-#include <stdlib.h>
-#include <stdio.h>
+#include <ctype.h>
 
 /**
-* count_words - Counts the number of words in a string.
-* @str: The input string.
-*
-* Return: The number of words in the string.
-*/
-int count_words(char *str)
-{
-int i, count = 0;
-
-for (i = 0; str[i] != '\0'; i++)
-{
-if (str[i] != ' ' && (str[i + 1] == ' ' || str[i + 1] == '\0'))
-count++;
-}
-
-return (count);
-}
-
-/**
-* strtow - Splits a string into words.
-* @str: The input string.
-*
-* Return: A pointer to an array of strings (words), or NULL on failure.
-*/
+ * strtow - Splits a string into words.
+ *
+ * @str: The string to split.
+ *
+ * Return: A pointer to an array of strings (words), or NULL if str is NULL,
+ * empty, or contains only spaces.
+ */
 char **strtow(char *str)
 {
-char **words;
-int i, j, k, count, len;
+	if (str == NULL || strlen(str) == 0 || strcmp(str, " ") == 0)
+		return (NULL);
 
-if (str == NULL || *str == '\0')
-return (NULL);
+	char *word = NULL;
+	int word_i = 0;
+	char **words = malloc((strlen(str) + 1) * sizeof(char *));
+	if (words == NULL)
+		return (NULL);
 
-count = count_words(str);
-words = malloc(sizeof(char *) * (count + 1));
-if (words == NULL)
-return (NULL);
+	int words_i = 0;
 
-for (i = 0, j = 0; j < count; j++)
-{
-while (str[i] == ' ')
-i++;
+	for (int i = 0; str[i] != '\0'; i++)
+	{
+		if (isspace(str[i]))
+		{
+			if (word != NULL)
+			{
+				word[word_i] = '\0';
+				words[words_i++] = word;
 
-len = 0;
-while (str[i + len] != ' ' && str[i + len] != '\0')
-len++;
+				word = NULL;
+				word_i = 0;
+			}
+		}
+		else
+		{
+			if (word == NULL)
+			{
+				word = malloc((count_chars(str + i) + 1) * sizeof(char));
+				if (word == NULL)
+				{
+					for (int j = 0; j < words_i; j++)
+						free(words[j]);
+					free(words);
+					return (NULL);
+				}
+			}
+			word[word_i++] = str[i];
+		}
+	}
 
-words[j] = malloc(sizeof(char) * (len + 1));
-if (words[j] == NULL)
-{
-for (k = 0; k < j; k++)
-    free(words[k]);
-free(words);
-return (NULL);
+	if (word != NULL)
+	{
+		word[word_i] = '\0';
+		words[words_i++] = word;
+
+		word = NULL;
+		word_i = 0;
+	}
+
+	words[words_i] = NULL;
+	return (words);
 }
 
-for (k = 0; k < len; k++)
-words[j][k] = str[i + k];
-words[j][k] = '\0';
-
-i += len;
-}
-
-words[count] = NULL;
-return (words);
+/**
+ * count_chars - Counts the number of non-space characters in a string.
+ *
+ * @str: The string to count.
+ *
+ * Return: The number of non-space characters in the string.
+ */
+int count_chars(char *str)
+{
+	int count = 0;
+	while (*str != '\0' && !isspace(*str))
+	{
+		count++;
+		str++;
+	}
+	return (count);
 }
