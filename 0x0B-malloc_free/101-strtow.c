@@ -1,5 +1,43 @@
 #include "main.h"
-#include <ctype.h>
+/**
+ * count_words - Counts the number of words in a string.
+ *
+ * @str: The string to count words in.
+ *
+ * Return: The number of words in the string.
+ */
+int count_words(char *str)
+{
+    int i, num = 0;
+
+    for (i = 0; str[i] != '\0'; i++)
+    {
+        if (*str == ' ')
+            str++;
+        else
+        {
+            for (; str[i] != ' ' && str[i] != '\0'; i++)
+                str++;
+            num++;
+        }
+    }
+
+    return num;
+}
+
+/**
+ * free_words - Frees the memory allocated for a string array.
+ *
+ * @words: The string array to free.
+ * @num_words: The number of words in the array.
+ */
+void free_words(char **words, int num_words)
+{
+    for (; num_words > 0; num_words--)
+        free(words[num_words - 1]);
+    free(words);
+}
+
 /**
  * strtow - Splits a string into words.
  *
@@ -10,77 +48,59 @@
  */
 char **strtow(char *str)
 {
-    char *word;
+    int num_words = 0;
     int word_i = 0;
+    int char_i = 0;
+    int word_len = 0;
     char **words;
-    int words_i = 0;
-    int i, j;
+    char *word_start;
 
-    if (str == NULL || strlen(str) == 0)
+    if (str == NULL || *str == '\0')
         return NULL;
 
-    words = (char **) malloc((strlen(str) + 1) * sizeof(char *));
+    num_words = count_words(str);
+    if (num_words == 0)
+        return NULL;
+
+    words = malloc((num_words + 1) * sizeof(char *));
     if (words == NULL)
         return NULL;
 
-    for (i = 0; str[i] != '\0'; )
+    for (; *str != '\0' && word_i < num_words; )
     {
-        if (isspace(str[i]))
-        {
-            if (word != NULL)
-            {
-                word[word_i] = '\0';
-                words[words_i++] = word;
-
-                word = NULL;
-                word_i = 0;
-            }
-            i++;
-        }
+        if (*str == ' ')
+            str++;
         else
         {
-            if (word == NULL)
+            word_start = str;
+            for (; *str != ' ' && *str != '\0'; )
             {
-                word = (char *) malloc((count_chars(str + i) + 1) * sizeof(char));
-                if (word == NULL)
-                {
-                    for (j = 0; j < words_i; j++)
-                        free(words[j]);
-                    free(words);
-                    return NULL;
-                }
+                word_len++;
+                str++;
             }
-            word[word_i++] = str[i++];
+
+            words[word_i] = malloc((word_len + 1) * sizeof(char));
+            if (words[word_i] == NULL)
+            {
+                free_words(words, word_i);
+                return NULL;
+            }
+
+            while (*word_start != ' ' && *word_start != '\0')
+            {
+                words[word_i][char_i] = *word_start;
+                word_start++;
+                char_i++;
+            }
+
+            words[word_i][char_i] = '\0';
+            word_i++;
+            char_i = 0;
+            word_len = 0;
+            str++;
         }
     }
 
-    if (word != NULL)
-    {
-        word[word_i] = '\0';
-        words[words_i++] = word;
-
-        word = NULL;
-        word_i = 0;
-    }
-
-    words[words_i] = NULL;
+    words[word_i] = NULL;
     return words;
-}
-
-/**
- * count_chars - Counts the number of non-space characters in a string.
- *
- * @str: The string to count.
- *
- * Return: The number of non-space characters in the string.
- */
-int count_chars(char *str)
-{
-    int count = 0;
-    while (*str != '\0' && !isspace(*str))
-    {
-        count++;
-        str++;
-    }
-    return count;
 }
