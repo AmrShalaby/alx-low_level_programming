@@ -9,7 +9,7 @@ int main(void) {
   char *file_name = __FILE__;
 
   /* Betty style: Indent each level by 4 spaces. */
-  printf("The name of the file is: %s\n", file_name);
+  printf("%s\n", file_name);
 
   return 0;
 }
