@@ -31,9 +31,19 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="1-print_numbers.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="2-print_strings.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="3-print_all.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="variadic_functions.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
